@@ -36,6 +36,15 @@ gem 'jbuilder', '~> 2.5'
 # Use HAML for HTML markup
 gem 'haml-rails'
 
+# simplifying forms and error handeling
+gem 'simple_form'
+
+# for secure passwords https://github.com/codahale/bcrypt-ruby
+gem 'bcrypt'
+
+#for restricting resouces that users can access https://github.com/CanCanCommunity/cancancan
+gem 'cancancan'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

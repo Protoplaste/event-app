@@ -1,0 +1,14 @@
+.h1 Log in
+=if @err
+  =@err
+
+=simple_form_for(:session, url: login_path) do |f|
+  .form-row
+    =f.input :email, label: "email"
+  .form-row
+    =f.input :password, label: "password"
+
+  =f.submit "Log in"
+
+or 
+=link_to 'Sign up', signup_path 

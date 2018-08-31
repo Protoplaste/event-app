@@ -1,0 +1,12 @@
+.h1 Sign up
+=if @err
+  =@err
+=simple_form_for(@user) do |f|
+  .form-row
+    =f.input :email, label: "email", error_html: { class: 'error' }
+  .form-row
+    =f.input :password, label: "password", error_html: { class: 'error' }
+
+  =f.submit "Sign up"
+or
+=link_to 'Log in', login_path
