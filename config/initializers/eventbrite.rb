@@ -1,0 +1,1 @@
+Eventbrite.token = Rails.application.secrets['eventbrite_access_token']

@@ -45,6 +45,8 @@ gem 'bcrypt'
 #for restricting resouces that users can access https://github.com/CanCanCommunity/cancancan
 gem 'cancancan'
 
+gem 'eventbrite'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
