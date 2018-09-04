@@ -17,6 +17,7 @@ class UsersController < ApplicationController
   end
 
   def profile
+    @locations = current_user.user_locations.includes(:events)
   end
 
   private

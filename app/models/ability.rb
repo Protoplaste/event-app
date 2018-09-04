@@ -7,6 +7,7 @@ class Ability
     #actions allowed only by logged in users
     if current_user.present?
       can :manage, User, id: current_user.id
+      can :manage, UserLocation, user_id: current_user.id
     end
   end
 end
