@@ -45,6 +45,7 @@ gem 'bcrypt'
 #for restricting resouces that users can access https://github.com/CanCanCommunity/cancancan
 gem 'cancancan'
 
+#integration with eventbite https://github.com/envoy/eventbrite
 gem 'eventbrite'
 
 # Use Capistrano for deployment

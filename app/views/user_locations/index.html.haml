@@ -1,0 +1,23 @@
+%h1 Listing user_locations
+
+%table
+  %thead
+    %tr
+      %th Address
+      %th Max distance
+      %th
+      %th
+      %th
+
+  %tbody
+    - @user_locations.each do |user_location|
+      %tr
+        %td= user_location.address
+        %td= user_location.max_distance
+        %td= link_to 'Edit', edit_user_location_path(user_location)
+        %td= link_to 'Destroy', user_location, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New User location', new_user_location_path
+= link_to 'Profile', profile_path

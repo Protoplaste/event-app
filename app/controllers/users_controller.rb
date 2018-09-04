@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   load_and_authorize_resource
   skip_authorize_resource only: :new
   def new
+    redirect_to '/profile' if current_user
     @user = User.new
   end
 
