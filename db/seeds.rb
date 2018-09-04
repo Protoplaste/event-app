@@ -5,3 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Eventbrite::Category.all.categories.each do |category|
+  EventCategory.create(name: category.name, id: category.id.to_i)
+end

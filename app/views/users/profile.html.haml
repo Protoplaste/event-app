@@ -1,32 +1,24 @@
 =link_to 'Log out', logout_path, method: :delete
 =link_to 'My Locations', user_locations_path
 
--if current_user.events.empty?
+-if @events.empty?
   %h1 There are no events happening at your locations
 -else
-  %h1{style: 'text-align: center; margin-left: auto; margin-right: auto'} Locations
+  %h1{style: 'text-align: center; margin-left: auto; margin-right: auto'} Events
 
-  %table
-    %tbody{style: 'text-align: center; margin-left: auto; margin-right: auto'}
-      - @locations.each do |location|
-        Events within
-        = location.max_distance
-        km of
-        = location.address
-
-        %table{style: 'text-align: center'}
-          %thead
-            %tr
-              %th Name
-              %th Starting on
-              %th Category
-              %th
-          %tbody
-            - location.events.each do |event|
-              %tr
-                %td= link_to event.name, event.url, target: '_blank'
-                %td= event.start_date
-                %td= event.category
-                %td
-
+  %table{style: 'text-align: center'}
+    %thead
+      %tr
+        %th Name
+        %th Starting on
+        %th Category
+        %th Location
+        %th
+    %tbody
+      - @events.each do |event|
+        %tr
+          %td= link_to event.name, event.url, target: '_blank'
+          %td= event.start_date
+          %td= event.event_category&.name
+          %td= event.user_locations.first.address
   %br

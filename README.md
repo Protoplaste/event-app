@@ -1,24 +1,8 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This application uses Rails 5.1.6
 
-Things you may want to cover:
+If you got this app from github repo you will need to ask for secrets.yml.key
 
-* Ruby version
+run rails db:seed after configuring database to get event categories
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...

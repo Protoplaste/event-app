@@ -1,7 +1,7 @@
 class UserLocation < ApplicationRecord
 
   belongs_to :user
-  has_many :user_events
+  has_many :user_events, dependent: :destroy
   has_many :events, through: :user_events
 
   validates :address, presence: true
@@ -12,10 +12,10 @@ class UserLocation < ApplicationRecord
   def pull_events
     callback = Eventbrite::Event.search({'location.address': self.address, 'location.within': (self.max_distance.to_s + 'km')}, Rails.application.secrets['eventbrite_access_token'])
     callback.events.each do |e|
-      unless Event.find_by(eventbrite_id: e.id)
+      unless event = Event.find_by(eventbrite_id: e.id)
         event = Event.create(eventbrite_attributes(e))
-        UserEvent.create(user_location_id: self.id, event_id: event.id)
       end
+        UserEvent.find_or_create_by(user_location_id: self.id, event_id: event.id)
     end
   end
 
