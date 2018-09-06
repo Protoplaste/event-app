@@ -9,7 +9,7 @@ class Ability
       can :manage, User, id: current_user.id
       can :manage, UserLocation, user_id: current_user.id
       can :manage, UserEvent do |user_event|
-        user_event.user_location.id == current_user.id
+        user_event.user_location.user_id == current_user.id
       end
     end
   end

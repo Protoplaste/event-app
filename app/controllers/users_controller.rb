@@ -22,6 +22,7 @@ class UsersController < ApplicationController
                           .where(ignored: false)
                           .includes(:user_location, event: :event_category)
                           .where('start_date >= ?', Date.today).references(:event)
+                          .sort_by {|e| e.user_location.address}
   end
 
   private
