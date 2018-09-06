@@ -17,10 +17,11 @@ class UsersController < ApplicationController
   end
 
   def profile
-    #fetches current users events along with event categories and locations
+    #fetches current users unignored upcoming events along with event categories and locations
     @events = current_user.user_events
                           .where(ignored: false)
                           .includes(:user_location, event: :event_category)
+                          .where('start_date >= ?', Date.today).references(:event)
   end
 
   private
