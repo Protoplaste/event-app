@@ -1,0 +1,1 @@
+$("img#favorite_<%= @event.id %>").attr('src', "<%= @event.favorite ? 'assets/favorite-star-gold' : 'assets/favorite-star-black' %>")

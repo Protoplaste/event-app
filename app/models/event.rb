@@ -4,7 +4,5 @@ class Event < ApplicationRecord
   has_many :user_locations, through: :user_events
   has_many :users, through: :user_locations
 
-  def category
-    event_category&.name
-  end
+  validates :eventbrite_id, uniqueness: true
 end

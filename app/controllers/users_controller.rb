@@ -17,10 +17,10 @@ class UsersController < ApplicationController
   end
 
   def profile
-    #fetches current users events along with those events categories and locations
-    @events = current_user.events
-                          .includes(:event_category, :user_locations)
-                          .where('user_locations.user_id = ?', current_user.id).references(:user_locations) #only locations belonging to current user
+    #fetches current users events along with event categories and locations
+    @events = current_user.user_events
+                          .where(ignored: false)
+                          .includes(:user_location, event: :event_category)
   end
 
   private

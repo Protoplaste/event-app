@@ -1,0 +1,1 @@
+$("tr#event_<%= @event.id %>").remove()

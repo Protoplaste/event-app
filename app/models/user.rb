@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :user_locations, dependent: :destroy
+  has_many :user_events, through: :user_locations
   has_many :events, through: :user_locations
 
   before_save {self.email = email.downcase}

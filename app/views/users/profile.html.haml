@@ -14,11 +14,25 @@
         %th Category
         %th Location
         %th
+        %th
+        %th
     %tbody
       - @events.each do |event|
-        %tr
+        %tr{id: "event_#{event.id}"}
           %td= link_to event.name, event.url, target: '_blank'
           %td= event.start_date
           %td= event.event_category&.name
-          %td= event.user_locations.first.address
+          %td= event.user_location.address
+          %td
+            = link_to favorite_path(id: event.id), remote: true, method: :post do
+              =image_tag (event.favorite ? 'favorite-star-gold' : 'favorite-star-black'), id: "favorite_#{event.id}"
+          %td
+            = link_to ignore_path(id: event.id), remote: true, method: :post, data: { confirm: "Are You sure you want to ignore this event? #{event.name}" } do
+              =image_tag 'cross-black', id: "ignore_#{event.id}"
   %br
+Icons made by 
+=link_to "Robin Kylander", "https://www.flaticon.com/authors/robin-kylander", target: '_blank'
+aquired form 
+=link_to "Flaticon", "https://www.flaticon.com/", target: '_blank'
+licensed by
+=link_to "Creative Commons BY 3.0", "http://creativecommons.org/licenses/by/3.0/", target: '_blank'

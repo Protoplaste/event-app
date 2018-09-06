@@ -31,16 +31,13 @@ gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 
 # Use HAML for HTML markup
 gem 'haml-rails'
 
 # simplifying forms and error handeling
 gem 'simple_form'
-
-# for secure passwords https://github.com/codahale/bcrypt-ruby
-gem 'bcrypt'
 
 #for restricting resouces that users can access https://github.com/CanCanCommunity/cancancan
 gem 'cancancan'
