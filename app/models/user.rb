@@ -33,7 +33,7 @@ class User < ApplicationRecord
     #filters events by category if category was provided
     if params[:category].present?
 
-      events = events.where(events: { event_categories: { name: params[:category] } })
+      events = events.where(events: { event_categories: { name: params[:category]} })
     end
     events
   end

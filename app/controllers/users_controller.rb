@@ -25,12 +25,16 @@ class UsersController < ApplicationController
   end
 
   def search
-    @events = current_user.search(params[:search])
+    @events = current_user.search(search_params)
   end
 
   private
 
   def user_params
     user_params ||= params.require(:user).permit(:email, :password)
+  end
+
+  def search_params
+    search_params ||= params.require(:search).permit(:start_date, :end_date, :category)
   end
 end
