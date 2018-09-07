@@ -17,12 +17,15 @@ class UsersController < ApplicationController
   end
 
   def profile
-    #fetches current users unignored upcoming events along with event categories and locations
-    @events = current_user.user_events
-                          .where(ignored: false)
-                          .includes(:user_location, event: :event_category)
-                          .where('start_date >= ?', Date.today).references(:event)
-                          .sort_by {|e| e.user_location.address}
+    @events = current_user.fetch_events
+  end
+
+  def archives
+    @events = current_user.fetch_events(archive: true)
+  end
+
+  def search
+    @events = current_user.search(params[:search])
   end
 
   private

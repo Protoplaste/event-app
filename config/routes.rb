@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   resources :users, only: [:create]
   resources :user_locations, except: [:show]
   get '/profile', to: 'users#profile'
+  get '/archives', to: 'users#archives'
+  get '/search', to: 'users#search'
 
   post '/favorite', to: 'user_events#mark_favorite'
   post '/ignore', to: 'user_events#mark_ignore'

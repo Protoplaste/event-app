@@ -1,0 +1,6 @@
+=simple_form_for :search, { url: search_path, method: :get } do |f|
+  .a{id: 'datepicker'}
+    =f.input :start_date, as: :string, default: params.dig(:search, :start_date), required: false, input_html: {class: 'datepicker date start'}
+    =f.input :end_date, as: :string, default: params.dig(:search, :end_date), required: false, input_html: {class: 'datepicker date end'}
+  =f.input :category, default: params.dig(:search, :category), required: false
+  =f.submit 'Search', name: nil
