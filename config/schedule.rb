@@ -18,12 +18,19 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
-
-set :enviroment, 'development'
-env 'GEM_HOME', ENV['GEM_HOME']
-env 'GEM_PATH', ENV['GEM_PATH']
 set :output, { error: 'log/error.log', standard: 'log/cron.log' }
+set :env_path,    '"$HOME/.rbenv/shims":"$HOME/.rbenv/bin"'
+set :environment, 'development'
 
-every 1.minute do
+# load Rails app for Time.zone functionality
+require_relative './environment'
+
+job_type :rake,   %q{ cd :path && PATH=:env_path:"$PATH" RAILS_ENV=:environment bin/rake :task :output }
+
+every :day, at: Time.zone.parse('3:30am').utc do
   rake 'daily_update:eventbrite'
 end
+
+# every 1.minute do
+#   rake 'daily_update:eventbrite'
+# end
