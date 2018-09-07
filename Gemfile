@@ -46,6 +46,9 @@ gem 'cancancan'
 #integration with eventbite https://github.com/envoy/eventbrite
 gem 'eventbrite'
 
+#for scheduling daily event updates https://github.com/javan/whenever
+gem 'whenever', require: false
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
