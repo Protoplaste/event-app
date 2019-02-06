@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+%html
+  %head
+    %title EventApp
+    =csrf_meta_tags
+
+    =stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    =javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+
+  %body
+    %div{class: "container"}
+      %nav
+        %div{class: "nav-wrapper red darken-1"}
+          %a{href: "#", class: 'brand-logo center'}EventApp
+          - if logged_in?
+            %ul{id: "nav-mobile", class: "left hide-on-med-and-down"}
+              %li
+                %a
+                  =link_to 'Log out', logout_path, method: :delete
+              %li
+                %a
+                  =link_to 'My Locations', user_locations_path
+              %li
+                %a
+                  = link_to 'Profile', profile_path
+      %b
+      =yield
