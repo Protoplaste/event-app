@@ -1,0 +1,35 @@
+%table{style: 'text-align: center'} 
+  %thead
+    %tr
+      %th{id: 'header_name'}
+        %label Name
+      %th{id: 'header_start_date'}
+        %label Starting on
+      %th{id: 'header_category'}
+        %label Category
+      %th{id: 'header_location'}
+        %label Location
+      %th
+      %th
+      %th
+  %tbody
+    - @events.each do |event|
+      %tr{id: "event_#{event.id}"}
+        %td{id: "name"}= link_to event.name, event.url, target: '_blank'
+        %td{id: "start_date"}= event.start_date
+        %td{id: "category"}= event.event_category&.name
+        %td{id: "location"}= event.user_location.address
+        %td
+          = link_to favorite_path(id: event.id), remote: true, method: :post do
+            =image_tag (event.favorite ? 'favorite-star-gold' : 'favorite-star-black'), id: "favorite_#{event.id}"
+        %td
+          = link_to ignore_path(id: event.id), remote: true, method: :post, data: { confirm: "Are You sure you want to ignore this event? #{event.name}" } do
+            =image_tag 'cross-black', id: "ignore_#{event.id}"
+%br
+
+Icons made by 
+=link_to "Robin Kylander", "https://www.flaticon.com/authors/robin-kylander", target: '_blank'
+aquired form 
+=link_to "Flaticon", "https://www.flaticon.com/", target: '_blank'
+licensed by
+=link_to "Creative Commons BY 3.0", "http://creativecommons.org/licenses/by/3.0/", target: '_blank'

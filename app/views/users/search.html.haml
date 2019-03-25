@@ -1,0 +1,10 @@
+=link_to 'Log out', logout_path, method: :delete
+=link_to 'My Locations', user_locations_path
+=link_to 'Profile', profile_path
+
+=render 'search_form'
+-if @events.empty?
+  %h1 No events found
+-else
+  %h1{style: 'text-align: center; margin-left: auto; margin-right: auto'} Events
+  =render'events'

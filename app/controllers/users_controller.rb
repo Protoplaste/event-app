@@ -17,16 +17,24 @@ class UsersController < ApplicationController
   end
 
   def profile
-    #fetches current users unignored upcoming events along with event categories and locations
-    @events = current_user.user_events
-                          .where(ignored: false)
-                          .includes(:user_location, event: :event_category)
-                          .where('start_date >= ?', Date.today).references(:event)
+    @events = current_user.fetch_events
+  end
+
+  def archives
+    @events = current_user.fetch_events(archive: true)
+  end
+
+  def search
+    @events = current_user.search(search_params)
   end
 
   private
 
   def user_params
     user_params ||= params.require(:user).permit(:email, :password)
+  end
+
+  def search_params
+    search_params ||= params.require(:search).permit(:start_date, :end_date, :category)
   end
 end
