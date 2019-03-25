@@ -1,5 +1,38 @@
-logged in!
-Hello 
-=current_user.email
-.div
-=link_to 'log out', logout_path, method: :delete
+=link_to 'Log out', logout_path, method: :delete
+=link_to 'My Locations', user_locations_path
+
+-if @events.empty?
+  %h1 There are no events happening at your locations
+-else
+  %h1{style: 'text-align: center; margin-left: auto; margin-right: auto'} Events
+
+  %table{style: 'text-align: center'}
+    %thead
+      %tr
+        %th Name
+        %th Starting on
+        %th Category
+        %th Location
+        %th
+        %th
+        %th
+    %tbody
+      - @events.each do |event|
+        %tr{id: "event_#{event.id}"}
+          %td= link_to event.name, event.url, target: '_blank'
+          %td= event.start_date
+          %td= event.event_category&.name
+          %td= event.user_location.address
+          %td
+            = link_to favorite_path(id: event.id), remote: true, method: :post do
+              =image_tag (event.favorite ? 'favorite-star-gold' : 'favorite-star-black'), id: "favorite_#{event.id}"
+          %td
+            = link_to ignore_path(id: event.id), remote: true, method: :post, data: { confirm: "Are You sure you want to ignore this event? #{event.name}" } do
+              =image_tag 'cross-black', id: "ignore_#{event.id}"
+  %br
+Icons made by 
+=link_to "Robin Kylander", "https://www.flaticon.com/authors/robin-kylander", target: '_blank'
+aquired form 
+=link_to "Flaticon", "https://www.flaticon.com/", target: '_blank'
+licensed by
+=link_to "Creative Commons BY 3.0", "http://creativecommons.org/licenses/by/3.0/", target: '_blank'

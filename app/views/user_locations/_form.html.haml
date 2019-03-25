@@ -1,0 +1,17 @@
+= form_for @user_location do |f|
+  - if @user_location.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@user_location.errors.count, "error")} prohibited this location from being saved:"
+      %ul
+        - @user_location.errors.full_messages.each do |message|
+          %li= message
+
+  =f.hidden_field :user_id, value: current_user.id
+  .field
+    = f.label :address
+    = f.text_field :address
+  .field
+    = f.label 'max distance in kilometers'
+    = f.number_field :max_distance
+  .actions
+    = f.submit 'Track'

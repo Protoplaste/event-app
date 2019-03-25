@@ -6,6 +6,10 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'
 
   resources :users, only: [:create]
+  resources :user_locations, except: [:show]
   get '/profile', to: 'users#profile'
+
+  post '/favorite', to: 'user_events#mark_favorite'
+  post '/ignore', to: 'user_events#mark_ignore'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
