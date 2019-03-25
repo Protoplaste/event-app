@@ -1,4 +1,5 @@
 class UserLocation < ApplicationRecord
+  include EventbriteHelper
 
   belongs_to :user
   has_many :user_events, dependent: :destroy
@@ -10,9 +11,13 @@ class UserLocation < ApplicationRecord
   after_save { pull_events }
 
   def pull_events
-    callback = Eventbrite::Event.search({'location.address': self.address, 'location.within': (self.max_distance.to_s + 'km')}, Rails.application.secrets['eventbrite_access_token'])
+    #pulls events form eventbrite based on address and distance
+    callback = EventbriteHelper.search_eventbrite(self.address, self.max_distance)
+    #creates new events or updates old ones
     callback.events.each do |e|
-      unless event = Event.find_by(eventbrite_id: e.id)
+      if event = Event.find_by(eventbrite_id: e.id)
+        event.update(eventbrite_attributes(e))
+      else
         event = Event.create(eventbrite_attributes(e))
       end
         UserEvent.find_or_create_by(user_location_id: self.id, event_id: event.id)
